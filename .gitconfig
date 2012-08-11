@@ -1,0 +1,9 @@
+[user]
+	name = Daniel Motles
+	email = dmotles@interworx.com
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+[core]
+	excludesfile = /Users/dmotles/.gitignore_global
