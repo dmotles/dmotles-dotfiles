@@ -5,5 +5,11 @@
 	status = auto
 	branch = auto
 	diff = auto
+	interactive = true
 [core]
 	excludesfile = /Users/dmotles/.gitignore_global
+	editor = vim
+	autocrlf = true
+	whitespace = trailing-space,space-before-tab
+[merge]
+	tool = vimdiff
