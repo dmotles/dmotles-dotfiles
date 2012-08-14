@@ -1,6 +1,3 @@
-set exrc
-set secure
-
 " Pathogen lets us load plugins from a non-standard directory
 call pathogen#infect('~/vimplugins')
 
@@ -21,3 +18,9 @@ set shiftwidth=4
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_Auto_Open = 1
 let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+
+" Nerdtree commands
+
+autocmd vimenter * NERDTree
+
