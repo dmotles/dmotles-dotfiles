@@ -1,3 +1,6 @@
+set exrc
+set secure
+
 if has("autocmd")
     filetype on
     filetype indent on
@@ -9,4 +12,3 @@ set expandtab
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set relativenumber
