@@ -10,8 +10,8 @@
 .mono/
 .recently-used
 .ssh/
-.vim/
 .viminfo
+.vim/.netrwhist
 Desktop/
 Documents/
 Downloads/
