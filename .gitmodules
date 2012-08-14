@@ -4,3 +4,9 @@
 [submodule "vimplugins/nerdtree"]
 	path = vimplugins/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
+[submodule "vimplugins/command-t"]
+	path = vimplugins/command-t
+	url = git://git.wincent.com/command-t.git
+[submodule "vimplugins/phpcomplete"]
+	path = vimplugins/phpcomplete
+	url = git://github.com/shawncplus/phpcomplete.vim.git
