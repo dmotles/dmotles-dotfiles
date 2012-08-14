@@ -1,11 +1,26 @@
-# Bash completion shit
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
+# BASH_PROFILE for Daniel Motles
 
-# Aliases making my life easier gurl
-alias ls='ls -G'
-alias git='/usr/local/bin/git'
+
+# Mac specific stuff, in case I want to use this on non-macs
+if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
+    # in general, I want colors on LS
+    alias ls='ls -G'
+
+    # lets check if BREW is installed because the following require it
+    if command -v brew &>/dev/null; then
+        # Bash completion shit
+        if [ -f `brew --prefix`/etc/bash_completion ]; then
+            . `brew --prefix`/etc/bash_completion
+        fi
+
+        # Aliases making my life easier gurl
+        if [ -f `brew --prefix`/bin/git ]; then
+            alias git='/usr/local/bin/git'
+        fi
+    else
+        echo "Warning: You appear to be on a Mac without homebrew installed. INSTALL IT."
+    fi
+fi
 
 
 # prompt
