@@ -14,9 +14,8 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
         fi
 
         # Aliases making my life easier gurl
-        if [ -f `brew --prefix`/bin/git ]; then
-            alias git='/usr/local/bin/git'
-        fi
+        [ -f `brew --prefix`/bin/git ] && alias git="`brew --prefix`/bin/git"
+        [ -f `brew --prefix`/bin/ctags ] && alias ctags="`brew --prefix`/bin/ctags"
     else
         echo "Warning: You appear to be on a Mac without homebrew installed. INSTALL IT."
     fi
