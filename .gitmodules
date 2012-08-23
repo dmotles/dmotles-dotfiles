@@ -10,3 +10,6 @@
 [submodule "vimplugins/phpcomplete"]
 	path = vimplugins/phpcomplete
 	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule "vimplugins/phpdoc"]
+	path = vimplugins/phpdoc
+	url = git://github.com/vexxor/phpdoc.vim.git

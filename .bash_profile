@@ -1,10 +1,13 @@
 # BASH_PROFILE for Daniel Motles
-
+PATH=$PATH:~/bin
 
 # Mac specific stuff, in case I want to use this on non-macs
 if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
     # in general, I want colors on LS
     alias ls='ls -G'
+
+    # Add /usr/local/sbin to path
+    PATH=$PATH:/usr/local/sbin
 
     # lets check if BREW is installed because the following require it
     if command -v brew &>/dev/null; then

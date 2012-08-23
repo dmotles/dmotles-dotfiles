@@ -24,6 +24,9 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set tags=./tags;/
+set ruler
+set comments=sl:/**,mb:*,elx:*/
+set formatoptions+=r
 
 " Set my leader key
 
@@ -45,3 +48,5 @@ nmap <silent> <leader>nt <Esc>:NERDTreeToggle<CR>
 nmap <silent> <leader>\ <Esc>:NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+"phpdoc command
+nnoremap <silent> <leader>p <Esc>:call PhpDoc()<CR>
