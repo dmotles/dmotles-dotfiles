@@ -1,5 +1,5 @@
 # BASH_PROFILE for Daniel Motles
-PATH=$PATH:~/bin
+PATH=~/bin:$PATH
 
 # Mac specific stuff, in case I want to use this on non-macs
 if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
@@ -7,7 +7,8 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
     alias ls='ls -G'
 
     # Add /usr/local/sbin to path
-    PATH=$PATH:/usr/local/sbin
+    PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin
+    PATH=~/bin:$PATH
 
     # lets check if BREW is installed because the following require it
     if command -v brew &>/dev/null; then
@@ -26,4 +27,4 @@ fi
 
 
 # prompt
-export PS1="[\e[0:37m\\u\e[0m@\e[0:32m\\h\e[0m \e[0;31m\\w\e[0m]\e[0;36m\$(__git_ps1 ' (%s)')\e[0m\\$ "
+export PS1="[\[\033[0:37m\]\\u\[\033[0m\]@\[\033[0:32m\]\\h\[\033[0m\] \[\033[0;31m\]\\w\[\033[0m\]]\[\033[0;36m\]\$(__git_ps1 ' (%s)')\[\033[0m\]\\$ "

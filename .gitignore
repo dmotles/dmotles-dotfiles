@@ -1,3 +1,5 @@
+tmp/
+bin/
 .CFUserTextEncoding
 .Trash/
 .bash_history
@@ -23,3 +25,6 @@ Pictures/
 Public/
 src/
 .NERDTreeBookmarks
+.cgdb/
+.tgdb/
+Applications/
