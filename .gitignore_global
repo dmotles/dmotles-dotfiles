@@ -36,3 +36,10 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Vim #
+#######
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
