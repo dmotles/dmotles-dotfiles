@@ -28,3 +28,6 @@ src/
 .cgdb/
 .tgdb/
 Applications/
+.android/
+.filezilla/
+.pearrc

@@ -52,3 +52,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 nnoremap <silent> <leader>p <Esc>:call PhpDoc()<CR>
 
 set bg=dark
+
+"JFLEX syntax support (YAY)
+augroup filetype
+  au BufRead,BufNewFile *.flex,*.jflex    set filetype=jflex
+augroup END
+au Syntax jflex    so ~/.vim/syntax/jflex.vim
