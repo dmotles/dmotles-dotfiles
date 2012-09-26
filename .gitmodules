@@ -13,3 +13,6 @@
 [submodule "vimplugins/phpdoc"]
 	path = vimplugins/phpdoc
 	url = git://github.com/vexxor/phpdoc.vim.git
+[submodule "vimplugins/syntastic"]
+	path = vimplugins/syntastic
+	url = git://github.com/scrooloose/syntastic.git
