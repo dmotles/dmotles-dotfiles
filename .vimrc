@@ -58,3 +58,5 @@ augroup filetype
   au BufRead,BufNewFile *.flex,*.jflex    set filetype=jflex
 augroup END
 au Syntax jflex    so ~/.vim/syntax/jflex.vim
+
+so ~/vimplugins/autotag/plugin/autotag.vim
