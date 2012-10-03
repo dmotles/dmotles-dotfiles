@@ -35,7 +35,7 @@ let mapleader = ','
 " Tag list commands
 
 nnoremap <silent> <Leader>l :TlistToggle<CR>
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 let Tlist_Auto_Open = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
@@ -51,7 +51,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "phpdoc command
 nnoremap <silent> <leader>p <Esc>:call PhpDoc()<CR>
 
-set bg=dark
 
 "JFLEX syntax support (YAY)
 augroup filetype
