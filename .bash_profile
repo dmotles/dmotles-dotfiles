@@ -24,7 +24,6 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
         echo "Warning: You appear to be on a Mac without homebrew installed. INSTALL IT."
     fi
 else
-    source ~/.bashrc
     source /etc/bash_completion.d/git
     alias ls="ls --color=auto"
     alias grep="grep --color=auto"
