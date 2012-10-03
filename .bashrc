@@ -306,6 +306,7 @@ if [ "$HOSTNAME" = "thot.cs.pitt.edu" ]; then
 elif [ "$HOSTNAME" == "pc5506-1.cs.pitt.edu" ]; then
   export PATH="$PATH:/opt/dmm141/minet"
 fi
-if [ -e ~/.bashrc ]; then
-    source ~/.bashrc
+
+if [ -e ~/.bash_profile ]; then
+    source ~/.bash_profile
 fi
