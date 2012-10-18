@@ -59,4 +59,8 @@ augroup filetype
 augroup END
 au Syntax jflex    so ~/.vim/syntax/jflex.vim
 
+"autotag
 so ~/vimplugins/autotag/plugin/autotag.vim
+
+"cup syntax highlighting
+autocmd BufNewFile,BufRead *.cup setf cup
