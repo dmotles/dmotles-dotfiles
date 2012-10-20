@@ -31,3 +31,14 @@ Applications/
 .android/
 .filezilla/
 .pearrc
+.Xauthority
+.cache
+.irb_history
+.neocon
+.putty
+.serverauth.8416
+Google Drive
+.vimbackup/*
+.vimswap/*
+.vimundo/*
+.vimviews/*
