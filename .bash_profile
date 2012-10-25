@@ -28,7 +28,7 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
 else
     if [ "$BASH_RC_EXECUTED" == "1" ]; then
         export BASH_RC_EXECUTED="1"
-        source ~/.bashrc
+        [ -f ~/.bashrc ] && source ~/.bashrc
     fi
     source /etc/bash_completion.d/git
     alias ls="ls --color=auto"
@@ -37,4 +37,5 @@ fi
 
 
 # prompt
-export PS1="[\[\033[0:37m\]\\u\[\033[0m\]@\[\033[0:32m\]\\h\[\033[0m\] \[\033[0;31m\]\\w\[\033[0m\]]\[\033[0;36m\]\$(__git_ps1 ' (%s)')\[\033[0m\]\\$ "
+#export PS1="[\u@\h \W $(__git_ps1 '(%s)')]\\$ "
+export PS1="[\u@\h \W \[$(tput setaf 2)\]$(__git_ps1 '(%s)')\[$(tput sgr0)\]] \$ ";

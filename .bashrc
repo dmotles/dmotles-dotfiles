@@ -303,8 +303,12 @@ source /afs/pitt.edu/common/etc/bash_profile.global
 
 if [ "$HOSTNAME" = "thot.cs.pitt.edu" ]; then
 	source /opt/set_specific_profile.sh
-elif [ "$HOSTNAME" == "pc5506-1.cs.pitt.edu" ]; then
-  export PATH="$PATH:/opt/dmm141/minet"
+else
+    case "$HOSTNAME" in
+        pc5506-*.cs.pitt.edu)
+            export PATH="$PATH:/opt/dmm141/minet"
+            ;;
+    esac
 fi
 
 if [ -e ~/.bash_profile ]; then
