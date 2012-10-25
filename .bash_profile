@@ -23,6 +23,8 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
     else
         echo "Warning: You appear to be on a Mac without homebrew installed. INSTALL IT."
     fi
+
+    [ -f '/etc/profile.d/rvm.sh' ] && source /etc/profile.d/rvm.sh
 else
     if [ "$BASH_RC_EXECUTED" == "1" ]; then
         export BASH_RC_EXECUTED="1"
