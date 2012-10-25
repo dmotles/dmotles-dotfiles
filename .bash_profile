@@ -38,4 +38,4 @@ fi
 
 # prompt
 #export PS1="[\u@\h \W $(__git_ps1 '(%s)')]\\$ "
-export PS1="[\u@\h \W \[$(tput setaf 2)\]$(__git_ps1 '(%s)')\[$(tput sgr0)\]] \$ ";
+export PS1='[\u@\h \W \[$(tput setaf 2)\]$(__git_ps1 "(%s)")\[$(tput sgr0)\]] \$ ';
