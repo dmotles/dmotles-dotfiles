@@ -42,3 +42,7 @@ Google Drive
 .vimswap/*
 .vimundo/*
 .vimviews/*
+.gem/
+.serverauth.67556
+.zprofile
+.zshrc
