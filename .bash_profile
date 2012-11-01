@@ -24,7 +24,7 @@ if [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
         echo "Warning: You appear to be on a Mac without homebrew installed. INSTALL IT."
     fi
 
-    [ -f '/etc/profile.d/rvm.sh' ] && source /etc/profile.d/rvm.sh
+    #[ -f '/etc/profile.d/rvm.sh' ] && source /etc/profile.d/rvm.sh
 else
     source ~/.bashrc
     source /etc/bash_completion.d/git
