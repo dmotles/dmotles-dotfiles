@@ -1,3 +1,5 @@
+fpath=(~/.zsh/completion $fpath)
+
 # Set up the prompt
 
 autoload -Uz promptinit

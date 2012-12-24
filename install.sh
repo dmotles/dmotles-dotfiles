@@ -23,6 +23,7 @@ FILELIST="
 vimplugins
 .vimrc
 .zshrc
+.zsh
 "
 
 for file in `echo $FILELIST`; do
