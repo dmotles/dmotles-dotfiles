@@ -24,6 +24,7 @@ vimplugins
 .vimrc
 .zshrc
 .zsh
+.zshenv
 "
 
 for file in `echo $FILELIST`; do

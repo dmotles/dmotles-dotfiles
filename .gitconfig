@@ -1,6 +1,6 @@
 [user]
 	name = Daniel Motles
-	email = dmotles@interworx.com
+	email = seltom.dan@gmail.com
 [color]
 	status = auto
 	branch = auto
@@ -12,3 +12,11 @@
 	whitespace = trailing-space,space-before-tab
 [merge]
 	tool = vimdiff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = matching

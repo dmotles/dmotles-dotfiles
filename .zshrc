@@ -1,4 +1,5 @@
 fpath=(~/.zsh/completion $fpath)
+source ~/.zshenv
 
 # Set up the prompt
 
