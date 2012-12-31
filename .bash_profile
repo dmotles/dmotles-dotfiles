@@ -24,6 +24,9 @@ if [ $OS == "Windows_NT" ]; then
     if [ -f "/etc/bash_completion.d/git" ]; then
       . /etc/bash_completion.d/git
     fi
+    if [ -f "/etc/bash_completion.d/password-store" ]; then
+        . /etc/bash_completion.d/password-store
+    fi
 
 # Mac specific stuff, in case I want to use this on non-macs
 elif [ "$MACHTYPE" == "x86_64-apple-darwin12" ]; then
