@@ -30,3 +30,7 @@ vimplugins
 for file in `echo $FILELIST`; do
 	make_link "$file"
 done
+
+if [ "$OS" == "Windows_NT" ]; then
+    make_link ".bash_profile"
+fi
