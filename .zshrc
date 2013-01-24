@@ -1,5 +1,6 @@
 fpath=(~/.zsh/completion $fpath)
 source ~/.zshenv
+zuname=`uname`
 
 # Set up the prompt
 
@@ -26,7 +27,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-case `uname` in 
+case $zuname in 
     Darwin)
         ;;
     *)
@@ -44,3 +45,13 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+case $zuname in 
+    Darwin)
+        alias ls="ls -G"
+        ;;
+    *)
+        ;;
+esac
+
+PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
