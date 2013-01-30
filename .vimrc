@@ -21,12 +21,16 @@ syntax on
 set number
 set expandtab
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set tags=./tags;/
 set ruler
 set comments=sl:/**,mb:*,elx:*/
 set formatoptions+=r
+set showmode
+
+" show the `best match so far' as search strings are typed:
+set incsearch
 
 " Set my leader key
 
@@ -34,12 +38,25 @@ let mapleader = ','
 
 " Tag list commands
 
-nnoremap <silent> <Leader>l :TlistToggle<CR>
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-let Tlist_Auto_Open = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Process_File_Always = 1
+"nnoremap <silent> <Leader>l :TlistToggle<CR>
+"let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+"let Tlist_Auto_Open = 1
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 1
+"let Tlist_Process_File_Always = 1
+"let Tlist_Auto_Highlight_Tag = 1
+"let Tlist_Display_Prototype = 0
+"let Tlist_Display_Tag_Scope = 1
+"let Tlist_GainFocus_On_ToggleOpen = 1
+"let Tlist_Show_One_File = 1
+"let Tlist_Sort_Type = "name"
+"let Tlist_Max_Submenu_Items = 20
+"
+
+" Tagbar commands
+nnoremap <silent> <Leader>l :TagbarToggle<CR>
+
+
 
 " Nerdtree commands
 

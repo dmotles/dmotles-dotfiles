@@ -16,3 +16,6 @@
 [submodule "password-store"]
 	path = password-store
 	url = http://git.zx2c4.com/password-store
+[submodule "vimplugins/tagbar"]
+	path = vimplugins/tagbar
+	url = git://github.com/majutsushi/tagbar
