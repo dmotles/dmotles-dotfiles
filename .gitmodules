@@ -1,21 +1,3 @@
-[submodule "vimplugins/nerdtree"]
-	path = vimplugins/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule "vimplugins/command-t"]
-	path = vimplugins/command-t
-	url = git://git.wincent.com/command-t.git
-[submodule "vimplugins/phpcomplete"]
-	path = vimplugins/phpcomplete
-	url = git://github.com/shawncplus/phpcomplete.vim.git
-[submodule "vimplugins/phpdoc"]
-	path = vimplugins/phpdoc
-	url = git://github.com/vexxor/phpdoc.vim.git
-[submodule "vimplugins/syntastic"]
-	path = vimplugins/syntastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "password-store"]
 	path = password-store
 	url = http://git.zx2c4.com/password-store
-[submodule "vimplugins/tagbar"]
-	path = vimplugins/tagbar
-	url = git://github.com/majutsushi/tagbar
