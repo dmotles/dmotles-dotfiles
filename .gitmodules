@@ -1,3 +1,6 @@
 [submodule "password-store"]
 	path = password-store
 	url = http://git.zx2c4.com/password-store
+[submodule ".vim/bundle/vundle"]
+	path = .vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
