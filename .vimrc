@@ -1,3 +1,19 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+" NON BUNDLED
+Bundle 'https://github.com/StanAngeloff/php.vim'
+Bundle 'https://github.com/vexxor/phpdoc.vim'
+Bundle 'https://github.com/wincent/Command-T'
+Bundle 'git://github.com/majutsushi/tagbar'
+Bundle 'https://github.com/techlivezheng/tagbar-phpctags'
+
+
 if has("autocmd")
     " turn on file-type specific stuff
     filetype on
@@ -38,7 +54,7 @@ let mapleader = ','
 " Tag list commands
 
 " Tagbar commands
-"nnoremap <silent> <Leader>l :TagbarToggle<CR>
+nnoremap <silent> <Leader>l :TagbarToggle<CR>
 
 
 
@@ -50,7 +66,7 @@ let mapleader = ','
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 "phpdoc command
-"nnoremap <silent> <leader>p <Esc>:call PhpDoc()<CR>
+nnoremap <silent> <leader>p <Esc>:call PhpDoc()<CR>
 "
 "set bg=dark
 
