@@ -6,12 +6,17 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+Bundle 'AutoComplPop'
+Bundle 'snipMate'
+
 " NON BUNDLED
+Bundle 'scrooloose/syntastic'
 Bundle 'https://github.com/StanAngeloff/php.vim'
 Bundle 'https://github.com/vexxor/phpdoc.vim'
 Bundle 'https://github.com/wincent/Command-T'
 Bundle 'git://github.com/majutsushi/tagbar'
 Bundle 'https://github.com/techlivezheng/tagbar-phpctags'
+Bundle 'shawncplus/phpcomplete.vim'
 
 
 if has("autocmd")
@@ -26,6 +31,14 @@ if has("autocmd")
             \   if &omnifunc == "" |
             \       setlocal omnifunc=syntaxcomplete#Complete |
             \   endif
+
+        " select longest completion by default, and display even if there's
+        " only 1 menu item
+        set completeopt=longest,menuone
+
+        " make it so <Enter> selects a completion
+        inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
     endif
 endif
 
@@ -79,3 +92,24 @@ au Syntax jflex    so ~/.vim/syntax/jflex.vim
 
 "cup syntax highlighting
 autocmd BufNewFile,BufRead *.cup setf cup
+
+" php-specific settings
+au Filetype php setlocal comments=sl:/**,mb:*,elx:*/
+au Filetype php setlocal ofu=phpcomplete#CompletePHP
+
+" modify the external program used for grep
+" -n print line
+" -w match only words
+" -R recursive search
+" -H filename
+" $* args from vim
+" /dev/null - incase user passes nothing
+set grepprg=grep\ -nRH\ '--exclude-dir=*.svn*'\ --exclude=tags\ '--include=*.xml'\ '--include=*.php'\ $*\ /dev/null
+
+" bind a key to searching
+" <silent> - don't echo command in command line
+" <cword> current word cursor is on
+" <Bar> vertical bar character
+" cw open current change list (close with :ccl)
+nnoremap <silent> <C-G> :execute 'grep! ' . expand('<cword>') . ' *' <Bar> cw<CR> 
+nnoremap <silent> <C-H> :execute 'lgrep! ' . expand('<cword>') . ' *' <Bar> lopen<CR> 
