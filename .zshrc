@@ -55,3 +55,6 @@ case $zuname in
 esac
 
 PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
+
+
+echo "zshrc executed"

@@ -25,6 +25,7 @@ vimplugins
 .zshrc
 .zsh
 .zshenv
+.screenrc
 "
 
 for file in `echo $FILELIST`; do
