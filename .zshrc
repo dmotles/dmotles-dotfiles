@@ -20,6 +20,8 @@ case $OS in
         HISTSIZE=1000
         SAVEHIST=1000
         HISTFILE=~/.zsh_history
+
+        alias ls='/bin/ls --color=auto'
 esac
 
 echo "zshrc end"
