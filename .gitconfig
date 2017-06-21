@@ -20,3 +20,6 @@
 	trustExitCode = true
 [push]
 	default = matching
+[alias]
+	st = status -s
+	co = checkout
