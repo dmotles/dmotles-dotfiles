@@ -10,6 +10,16 @@ case $OS in
         antigen theme bureau
         antigen apply
         ;;
+    Linux)
+        autoload -Uz compinit promptinit
+        compinit
+        promptinit
+        prompt walters
+        setopt histignorealldups sharehistory
+        bindkey -e
+        HISTSIZE=1000
+        SAVEHIST=1000
+        HISTFILE=~/.zsh_history
 esac
 
 echo "zshrc end"
