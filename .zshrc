@@ -1,4 +1,13 @@
 echo "zshrc start"
+
+# Get root dir env var set
+source ~/.dmotles-dotfiles-root
+
+for f in ~/.zsh/*; do
+    source $f
+done
+
+# zsh completions set
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 autoload -Uz compinit promptinit
@@ -11,7 +20,6 @@ prompt walters
 setopt histignorealldups sharehistory
 
 bindkey -e
-
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -37,4 +45,6 @@ HISTFILE=~/.zsh_history
 #zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 echo "zshrc end"
+

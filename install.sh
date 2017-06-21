@@ -10,8 +10,8 @@ ln -svf  $ROOT/.gitconfig ~/.gitconfig
 ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
 ln -svf  $ROOT/.vimrc ~/.vimrc
 ln -svf  $ROOT/.zshrc ~/.zshrc
-ln -svf  $ROOT/.zprofile ~/.zprofile
-echo "export DMOTLES_DOTFILES_ROOT=\"$ROOT\"" > ~/.zshenv
+ln -svfn  $ROOT/zsh ~/.zsh
+echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 
 # Install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo "Unable to install vundle. Maybe it's already installed?"
