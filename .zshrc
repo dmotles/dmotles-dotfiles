@@ -4,7 +4,7 @@ export PATH="~/bin:$PATH"
 
 source ~/.dmotles-dotfiles-root
 
-case $OS in
+case $(uname -s) in
     Darwin)
         source ~/antigen/antigen.zsh
 
@@ -61,7 +61,6 @@ EOF
             ;;
     esac
 }
-
 
 
 echo "zshrc end"
