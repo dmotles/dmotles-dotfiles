@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 set -u
-#set -x
+set -x
 
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $ROOT
@@ -32,7 +32,7 @@ esac
 
 git clone https://github.com/zsh-users/antigen.git ~/antigen || echo 'Unable to install antigen. might be installed already.'
 
-
+echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 ln -svf  $ROOT/.gitconfig ~/.gitconfig
 ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
 ln -svf  $ROOT/.vimrc ~/.vimrc

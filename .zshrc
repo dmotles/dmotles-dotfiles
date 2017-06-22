@@ -1,5 +1,8 @@
 echo "zshrc start"
-OS=$(uname -s)
+
+export PATH="~/bin:$PATH"
+
+source ~/.dmotles-dotfiles-root
 
 case $OS in
     Darwin)
@@ -23,5 +26,42 @@ case $OS in
 
         alias ls='/bin/ls --color=auto'
 esac
+
+
+function dotfiles() {
+    local subcmd=$1
+    shift
+
+    case "$subcmd" in
+        st|status|diff|add|commit|push|pull)
+            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT $subcmd $@
+            ;;
+        install)
+            $DMOTLES_DOTFILES_ROOT/install.sh
+            ;;
+        update)
+            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT pull \
+                && $DMOTLES_DOTFILES_ROOT/install.sh \
+                && source ~/.zshrc
+            ;;
+        *)
+            cat <<EOF
+dotfiles [subcmd] [args]
+
+Available subcommands:
+
+    status  get the git status
+    diff    get the git diff
+    add     add changes
+    commit  commit changes
+    push    push changes
+    pull    pull changes
+    update  pull, run install, source zshrc
+EOF
+            ;;
+    esac
+}
+
+
 
 echo "zshrc end"
