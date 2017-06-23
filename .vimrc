@@ -11,7 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
-
+Plugin 'maralla/completor.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -39,13 +39,12 @@ syntax enable
 " Enable ruler
 set ruler
 
-" make it so airline shows up even with a single window
-set laststatus=2
-
 " Searching
 set smartcase
 set incsearch
 set showmatch
 set hlsearch
 
-
+" ============================ vim-airline ==================================
+" make it so airline shows up even with a single window
+set laststatus=2
