@@ -1,6 +1,3 @@
-[ui]
-username = Daniel Motles <dmotles@qumulo.com>
-
 [pager]
 pager = LESS='FSRX' less
 quiet = True
@@ -9,23 +6,11 @@ quiet = True
 color =
 mq =
 pager =
-qumulo = ~/tools/hgext/qumulo.py
-record = ~/tools/crecord
 prompt = ~/.hg-prompt/prompt.py
-
-[hooks]
-# Prevent "hg pull" if MQ patches are applied.
-prechangegroup.mq-no-pull = ! hg qtop > /dev/null 2>&1
-# Prevent "hg push" if MQ patches are applied.
-preoutgoing.mq-no-push = ! hg qtop > /dev/null 2>&1
 
 [diff]
 showfunc = True
 git = True
 unified = 10
 
-# The following sections are nice to have but not required
-[alias]
-# Can be extended or customized to personal preferences
-q = qseries -s -v
-qstat = qdiff --stat
+%include .hgrc.local

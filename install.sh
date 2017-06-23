@@ -21,6 +21,9 @@ case $OS in
         if ! command -v fortune; then
             brew install fortune
         fi
+        if ! command -v hg; then
+            brew install hg
+        fi
         ;;
     Linux)
         if ! command -v fortune; then
