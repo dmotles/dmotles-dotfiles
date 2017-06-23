@@ -13,4 +13,19 @@ showfunc = True
 git = True
 unified = 10
 
+[hooks]
+# Prevent "hg pull" if MQ patches are applied.
+prechangegroup.mq-no-pull = ! hg qtop > /dev/null 2>&1
+# Prevent "hg push" if MQ patches are applied.
+preoutgoing.mq-no-push = ! hg qtop > /dev/null 2>&1
+
+# The following sections are nice to have but not required
+[alias]
+# Can be extended or customized to personal preferences
+q = qseries -s -v
+qstat = qdiff --stat
+
+[color]
+qseries.unapplied = white dim
+
 %include .hgrc.local
