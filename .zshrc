@@ -41,8 +41,10 @@ function dotfiles() {
         update)
             git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT pull \
                 && $DMOTLES_DOTFILES_ROOT/install.sh \
-                && source ~/.zshrc \
-                && antigen reset
+                && source ~/.zshrc
+                if which antigen &>/dev/null; then
+                    antigen reset
+                fi
             ;;
         *)
             cat <<EOF
