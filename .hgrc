@@ -11,6 +11,7 @@ mq =
 pager =
 qumulo = ~/tools/hgext/qumulo.py
 record = ~/tools/crecord
+prompt = ~/.hg-prompt/prompt.py
 
 [hooks]
 # Prevent "hg pull" if MQ patches are applied.

@@ -6,7 +6,13 @@ source ~/.dmotles-dotfiles-root
 source ~/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme bureau
+
+if [[ $(hostname) == 'devvm-trusty-template' ]]; then
+    antigen theme ys
+else
+    antigen theme bureau
+fi
+
 antigen apply
 
 setopt histignorealldups sharehistory
