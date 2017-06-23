@@ -31,6 +31,7 @@ esac
 
 
 git clone https://github.com/zsh-users/antigen.git ~/antigen || echo 'Unable to install antigen. might be installed already.'
+git --git-dir ~/antigen/.git --work-tree ~/antigen checkout v2.1.1
 
 echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 ln -svf  $ROOT/.gitconfig ~/.gitconfig
