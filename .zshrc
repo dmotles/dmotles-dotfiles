@@ -7,8 +7,8 @@ source ~/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-if [[ $(hostname) == 'devvm-trusty-template' ]]; then
-    antigen theme ys
+if [ -f ~/.antigen.theme ]; then
+    antigen theme $(<~/.antigen.theme)
 else
     antigen theme bureau
 fi
