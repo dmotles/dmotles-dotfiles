@@ -60,9 +60,9 @@ au FileType c setlocal cinoptions=:0,l1,t0,(4,u0,Ws
 au FileType c setlocal formatoptions=croql
 au FileType c setlocal comments=sr:/*,mb:*,el:*/,://
 
-" vim
-au FileType vim setlocal textwidth=0
-
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 
 " ============================ vim-airline ==================================
 " make it so airline shows up even with a single window
