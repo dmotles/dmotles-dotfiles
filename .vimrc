@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'maralla/completor.vim'
+Plugin 'mhinz/vim-signify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -67,3 +68,7 @@ endif
 " ============================ vim-airline ==================================
 " make it so airline shows up even with a single window
 set laststatus=2
+
+" ============================ vim-signify ==================================
+" make it so signify only has to do git and hg
+let g:signify_vcs_list = [ 'git', 'hg' ]
