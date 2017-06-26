@@ -45,6 +45,7 @@ ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
 ln -svf  $ROOT/.vimrc ~/.vimrc
 ln -svf  $ROOT/.zshrc ~/.zshrc
 ln -svf  $ROOT/.hgrc ~/.hgrc
+ln -svf  $ROOT/tmux.conf ~/.tmux.conf
 
 # Install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo "Unable to install vundle. Maybe it's already installed?"

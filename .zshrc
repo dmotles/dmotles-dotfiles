@@ -26,6 +26,7 @@ case $(uname -s) in
         ;;
     Linux)
         alias ls='/bin/ls --color=auto'
+        alias tmux='/usr/bin/tmux -2'
         ;;
 esac
 
