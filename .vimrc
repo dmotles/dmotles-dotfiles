@@ -23,7 +23,7 @@ filetype indent on
 filetype plugin on
 
 " autocd to cwd of current file so :e <filename> can autocomplete in cwd
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+" autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
 " Set my leader key
 let mapleader = ','
