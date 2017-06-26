@@ -28,6 +28,10 @@ autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 " Set my leader key
 let mapleader = ','
 
+set backspace=indent,eol,start  " Backspace for dummies
+set number                      " Line numbers on
+
+
 " SPACES
 set tabstop=4
 set shiftwidth=4
