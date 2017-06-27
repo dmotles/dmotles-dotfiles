@@ -9,6 +9,58 @@ cd $ROOT
 OS=$(uname -s)
 
 
+function -pkg-mgr-install-if-not-exists() {
+    local testcmd="$1"
+    local pkg="$2"
+    local pkgmgr="$3"
+    echo -n "Checking for $testcmd command..."
+    if ! command -v "$testcmd"; then
+        echo " not installed. Installing."
+        $pkgmgr install "$pkg"
+    fi
+}
+
+
+function -brew-install-if-not-exist() {
+    -pkg-mgr-install-if-not-exists "$1" "$2" brew
+}
+
+
+function -apt-get-install-if-not-exist() {
+    -pkg-mgr-install-if-not-exists "$1" "$2" "sudo apt-get"
+}
+
+
+function -safe-git-checkout() {
+    local tgtdir="$1"
+    local rev="$2"
+    if [ -n "$rev" ]; then
+        git --git-dir "$tgtdir/.git" --work-tree "$tgtdir" checkout "$rev"
+    fi
+}
+
+
+function -safe-git-clone() {
+    local repo="$1"
+    local tgtdir="$2"
+    local rev="${3:-}"
+    if [ -d "$tgtdir" ]; then
+        if [ -d "$tgtdir/.git" ]; then
+            -safe-git-checkout "$tgtdir" "$rev"
+        else
+            echo "$tgtdir is not empty and is not a git repo." >&2
+            exit 1
+        fi
+    else
+        if [ -n "$rev" ]; then
+            git clone -b "$rev" -- "$repo" "$tgtdir"
+        else
+            git clone "$repo" "$tgtdir"
+        fi
+    fi
+}
+
+
 case $OS in
     Darwin)
         echo -n 'Checking for homebrew...'
@@ -17,39 +69,32 @@ case $OS in
             xcode-select --install || echo 'xcode dev tools already installed';
             /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
         fi
-        echo -n 'Checking for fortune command...'
-        if ! command -v fortune; then
-            brew install fortune
-        fi
-        if ! command -v hg; then
-            brew install hg
-        fi
+        -brew-install-if-not-exist fortune fortune
+        -brew-install-if-not-exist hg hg
         ;;
     Linux)
-        if ! command -v fortune; then
-            sudo apt-get install fortune-mod
-        fi
+        -apt-get-install-if-not-exist fortune fortune-mod
         ;;
 esac
 
-
-git clone https://github.com/zsh-users/antigen.git ~/antigen 2> /dev/null || echo 'Unable to install antigen. might be installed already.'
-git --git-dir ~/antigen/.git --work-tree ~/antigen checkout v2.1.1
+-safe-git-clone https://github.com/zsh-users/antigen.git ~/antigen 'v2.1.1' 
 
 # hg prompt, needed for some themes...
-hg clone https://bitbucket.org/sjl/hg-prompt ~/.hg-prompt 2> /dev/null || echo '.hg-prompt already exists... continuing.'
+if [ ! -d ~/.hg-prompt ]; then
+    hg clone https://bitbucket.org/sjl/hg-prompt ~/.hg-prompt
+fi
 
 echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 ln -svf  $ROOT/.gitconfig ~/.gitconfig
 ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
-ln -svf  $ROOT/.vimrc ~/.vimrc
 ln -svf  $ROOT/.zshrc ~/.zshrc
 ln -svf  $ROOT/.hgrc ~/.hgrc
 ln -svf  $ROOT/tmux.conf ~/.tmux.conf
+ln -svf  $ROOT/vimrc.before.fork ~/.vimrc.before.fork
+ln -svf  $ROOT/vimrc.fork ~/.vimrc.fork
 
-# Install vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim || echo "Unable to install vundle. Maybe it's already installed?"
-
-
-# Install/update plugins
-vim +PluginInstall +qall
+# Install motles spf
+if [ ! -d ~/.spf13-vim-3 ]; then
+    curl https://raw.githubusercontent.com/dmotles/spf13-vim/3.0/bootstrap.sh -L | \
+        REPO_URI=https://github.com/dmotles/spf13-vim.git sh
+fi
