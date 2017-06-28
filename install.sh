@@ -93,6 +93,7 @@ ln -svf  $ROOT/.hgignore_global ~/.hgignore_global
 ln -svf  $ROOT/tmux.conf ~/.tmux.conf
 ln -svf  $ROOT/vimrc.before.fork ~/.vimrc.before.fork
 ln -svf  $ROOT/vimrc.fork ~/.vimrc.fork
+ln -svf  $ROOT/vimrc.bundles.fork ~/.vimrc.bundles.fork
 
 # Install motles spf
 if [ ! -d ~/.spf13-vim-3 ]; then
