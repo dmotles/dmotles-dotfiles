@@ -1,5 +1,6 @@
 [ui]
 editor = vim
+ignore = ~/.hgignore_global
 
 [pager]
 pager = LESS='FSRX' less

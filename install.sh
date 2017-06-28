@@ -89,6 +89,7 @@ ln -svf  $ROOT/.gitconfig ~/.gitconfig
 ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
 ln -svf  $ROOT/.zshrc ~/.zshrc
 ln -svf  $ROOT/.hgrc ~/.hgrc
+ln -svf  $ROOT/.hgignore_global ~/.hgignore_global
 ln -svf  $ROOT/tmux.conf ~/.tmux.conf
 ln -svf  $ROOT/vimrc.before.fork ~/.vimrc.before.fork
 ln -svf  $ROOT/vimrc.fork ~/.vimrc.fork
