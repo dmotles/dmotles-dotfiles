@@ -28,6 +28,7 @@ preoutgoing.mq-no-push = ! hg qtop > /dev/null 2>&1
 # Can be extended or customized to personal preferences
 q = qseries -s -v
 qstat = qdiff --stat
+grepcwd = ! $HG grep -r 'reverse(::.)' "$1" .
 
 [color]
 qseries.unapplied = white dim

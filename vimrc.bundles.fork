@@ -1,1 +1,2 @@
 Bundle 'maralla/completor.vim'
+Bundle 'jlfwong/vim-mercenary'
