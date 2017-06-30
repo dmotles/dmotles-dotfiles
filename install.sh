@@ -85,17 +85,30 @@ if [ ! -d ~/.hg-prompt ]; then
 fi
 
 echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
+
+# GIT
 ln -svf  $ROOT/.gitconfig ~/.gitconfig
 ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
+
+# ZSH
 ln -svf  $ROOT/.zshrc ~/.zshrc
+
+# HG
 ln -svf  $ROOT/.hgrc ~/.hgrc
 ln -svf  $ROOT/.hgignore_global ~/.hgignore_global
+
+# TMUX
 ln -svf  $ROOT/tmux.conf ~/.tmux.conf
+
+# VIM
 ln -svf  $ROOT/vimrc.before.fork ~/.vimrc.before.fork
 ln -svf  $ROOT/vimrc.fork ~/.vimrc.fork
 ln -svf  $ROOT/vimrc.bundles.fork ~/.vimrc.bundles.fork
 
-# Install motles spf
+# GDB
+ln -svf  $ROOT/gdbinit ~/.gdbinit
+
+# Install motles spf (only if it doesnt seem installed already - otherwise it will have to be managed manually per-system)
 if [ ! -d ~/.spf13-vim-3 ]; then
     curl https://raw.githubusercontent.com/dmotles/spf13-vim/3.0/bootstrap.sh -L | \
         REPO_URI=https://github.com/dmotles/spf13-vim.git sh
