@@ -36,7 +36,7 @@ function dotfiles() {
     shift
 
     case "$subcmd" in
-        st|status|diff|add|commit|push|pull)
+        st|status|diff|add|commit|push|pull|show)
             git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT $subcmd $@
             ;;
         install)
@@ -60,6 +60,7 @@ dotfiles [subcmd] [args]
 Available subcommands:
 
     status  get the git status
+    show    do git show
     diff    get the git diff
     add     add changes
     commit  commit changes
