@@ -2,3 +2,8 @@
 
 " limit what vcs signify tries to test
 let g:signify_vcs_list = [ 'git', 'hg' ]
+
+if executable('ag')
+    " use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+endif
