@@ -12,10 +12,10 @@
     let g:spf13_localleader='/'
 
     " Disable easier moving in tabs and windows
-    "   let g:spf13_no_easyWindows = 1
+    let g:spf13_no_easyWindows = 1
 
     " Disable wrap relative motion for start/end line motions
-    "   let g:spf13_no_wrapRelMotion = 1
+    let g:spf13_no_wrapRelMotion = 1
 
     " Disable fast tab navigation
     "   let g:spf13_no_fastTabs = 1
