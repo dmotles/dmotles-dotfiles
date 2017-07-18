@@ -5,12 +5,14 @@ ignore = ~/.hgignore_global
 [pager]
 pager = LESS='FSRX' less
 quiet = True
+attend = outgoing,incoming,diff,status,log,qdiff,blame,annotate,pdiff,glog,llog
 
 [extensions]
 color =
 mq =
 pager =
 prompt = ~/.hg-prompt/prompt.py
+graphlog =
 
 [diff]
 showfunc = True
@@ -29,6 +31,7 @@ preoutgoing.mq-no-push = ! hg qtop > /dev/null 2>&1
 q = qseries -s -v
 qstat = qdiff --stat
 grepcwd = ! $HG grep -r 'reverse(::.)' "$1" .
+llog = log --template='\x1B[31m{rev}\x1B[0m:\x1B[33m{node|short} \x1B[97m{author|user}\x1B[0m \x1B[36m{date|age} \x1B[32m[{phase}] \x1B[0m{desc|firstline} \x1B[0m\n'
 
 [color]
 qseries.unapplied = white dim
