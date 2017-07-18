@@ -5,16 +5,16 @@ let g:signify_vcs_list = [ 'git', 'hg' ]
 
 if executable('ag')
     " use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
-    set grepformat=%f:%l:%c:%m
-    augroup grepagoverride
+    set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores
+    augroup grepprgmodify
         autocmd!
-        autocmd FileType c setlocal grepprg=ag\ --cc\ --nogroup\ --nocolor\ --vimgrep
-        autocmd FileType cpp,python setlocal grepprg=ag\ --<amatch>\ --nogroup\ --nocolor\ --vimgrep
+        autocmd FileType c,cpp setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores\ --cc
+        autocmd FileType python setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores\ --python
     augroup END
+    set grepformat=%f:%l:%c:%m
 endif
 
-nnoremap <leader>* :<C-U>silent lgrep <cword> \| lopen<CR><C-l>
+nnoremap <leader>* :silent lgrep <cword> \| lopen<CR><C-l>
 
 
 " ----------------- COMPLETOR
