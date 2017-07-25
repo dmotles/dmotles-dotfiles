@@ -31,3 +31,9 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 " vim80 has some indent plugin that fucks stuff up in python and it makes me
 " mad
 let g:pyindent_open_paren = 'shiftwidth()'
+
+" Break arrow key habit
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
