@@ -44,3 +44,6 @@ let g:syntastic_auto_loc_list = 1
 
 " Active by default, but python has its own checker so disable that.
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['python'] }
+
+" show where 80 chars exist
+set colorcolumn=80
