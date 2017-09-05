@@ -38,13 +38,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Syntastic global settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-
-" Active by default, but python has its own checker so disable that.
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['python'] }
-
 " show where 80 chars exist
 set colorcolumn=80
 

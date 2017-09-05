@@ -3,3 +3,7 @@ Bundle 'jlfwong/vim-mercenary'
 UnBundle 'pythoncomplete'
 UnBundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-dispatch'
+
+" remove syntastic, use neomake instead.
+UnBundle 'scrooloose/syntastic'
+Bundle 'neomake/neomake'
