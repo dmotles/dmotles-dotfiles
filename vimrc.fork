@@ -25,7 +25,7 @@ let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki', 'gitco
 " complete using tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 
 " vim80 has some indent plugin that fucks stuff up in python and it makes me
