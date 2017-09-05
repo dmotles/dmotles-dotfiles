@@ -47,3 +47,19 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['python'] }
 
 " show where 80 chars exist
 set colorcolumn=80
+
+" Auto read when a file is changed
+set autoread
+augroup checktime
+    au!
+    if !has("gui_running")
+        "silent! necessary otherwise throws errors when using command
+        "line window.
+        autocmd BufEnter        * silent! checktime
+        autocmd CursorHold      * silent! checktime
+        autocmd CursorHoldI     * silent! checktime
+        "these two _may_ slow things down. Remove if they do.
+        "autocmd CursorMoved     * silent! checktime
+        "autocmd CursorMovedI    * silent! checktime
+    endif
+augroup END
