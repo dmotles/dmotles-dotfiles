@@ -7,3 +7,5 @@ Bundle 'tpope/vim-dispatch'
 " remove syntastic, use neomake instead.
 UnBundle 'scrooloose/syntastic'
 Bundle 'neomake/neomake'
+
+Bundle 'christoomey/vim-tmux-navigator'
