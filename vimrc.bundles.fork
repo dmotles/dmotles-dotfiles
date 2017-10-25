@@ -1,5 +1,5 @@
 Bundle 'maralla/completor.vim'
-Bundle 'jlfwong/vim-mercenary'
+Bundle 'ludovicchabant/vim-lawrencium'
 UnBundle 'pythoncomplete'
 UnBundle 'jiangmiao/auto-pairs'
 Bundle 'tpope/vim-dispatch'
