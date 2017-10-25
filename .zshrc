@@ -72,5 +72,8 @@ EOF
     esac
 }
 
+function rmrej() {
+    find . \( -name '*.orig' -o -name '*.rej' \) -print -delete
+}
 
 echo "zshrc end"
