@@ -8,8 +8,8 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores
     augroup grepprgmodify
         autocmd!
-        autocmd FileType c,cpp setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores\ --cc
-        autocmd FileType python setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --skip-vcs-ignores\ --python
+        autocmd FileType c,cpp setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --cc
+        autocmd FileType python setlocal grepprg=ag\ --nogroup\ --nocolor\ --vimgrep\ --python
     augroup END
     set grepformat=%f:%l:%c:%m
 endif
