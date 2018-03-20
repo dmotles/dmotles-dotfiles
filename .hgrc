@@ -15,6 +15,7 @@ pager =
 prompt = ~/.hg-prompt/prompt.py
 graphlog =
 record =
+purge =
 
 [diff]
 showfunc = True
