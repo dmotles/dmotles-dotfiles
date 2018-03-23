@@ -9,3 +9,6 @@ UnBundle 'scrooloose/syntastic'
 Bundle 'neomake/neomake'
 
 Bundle 'christoomey/vim-tmux-navigator'
+
+" NO MORE BUFFERLINE
+UnBundle 'bling/vim-bufferline'
