@@ -38,6 +38,9 @@ Plugin 'tpope/vim-dispatch'
 " async building
 Plugin 'neomake/neomake'
 
+" Git/Hg +/- in the gutter
+Plugin 'mhinz/vim-signify'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -192,6 +195,10 @@ filetype plugin indent on    " required
 
     " select with enter
     inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+" }
+
+" Signify {
+    let g:signify_vcs_list = [ 'git', 'hg' ] " only git and hg
 " }
 
 " Functions {
