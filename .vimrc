@@ -1,3 +1,4 @@
+" vim: set ft=vim tw=80
 "        _
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
@@ -15,19 +16,27 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Colorscheme
+" solarized colors
 Plugin 'altercation/vim-colors-solarized'
 
-" Easier pane switching across vim and tmux
+" tmux+vim integration
 Plugin 'christoomey/vim-tmux-navigator'
 
+" autocomplete
+Plugin 'maralla/completor.vim'
+
+" mercurial in-editor diff
+Plugin 'ludovicchabant/vim-lawrencium'
+
+" Make cmd that works with tmux
+Plugin 'tpope/vim-dispatch'
+
+" async building
+Plugin 'neomake/neomake'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -36,8 +45,6 @@ filetype plugin indent on    " required
 
 " General {
     syntax on                   " Syntax highlighting
-
-
     scriptencoding utf-8
 
     if has('clipboard')
@@ -48,7 +55,7 @@ filetype plugin indent on    " required
         endif
     endif
 
-    set shortmess=aoOtT			" shorten messages to prevent hitenter
+    set shortmess=aoOtT                 " shorten messages to prevent "Hit Enter" messages
     set history=1000                    " Store a ton of history (default is 20)
     set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
@@ -61,6 +68,9 @@ filetype plugin indent on    " required
             set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
         endif
     " }
+
+    set autoread                        " read a file when it has been changed
+    set path+=./**                      " add all files in cwd to path
 " }
 
 
@@ -117,6 +127,8 @@ filetype plugin indent on    " required
 
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
+
+    set colorcolumn=80              " show where column 80 resides
 " }
 
 " Formatting {
@@ -134,7 +146,8 @@ filetype plugin indent on    " required
         call cursor(l, c)
     endfunction
     " }
-    autocmd FileType c,python,vim autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType c,python,vim
+        \ autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     set nowrap                      " Do not wrap long lines
     set autoindent                  " Indent at the same level of the previous line
@@ -144,4 +157,39 @@ filetype plugin indent on    " required
     set softtabstop=4               " Let backspace delete indent
     set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+" }
+
+" Mapping {
+    let mapleader = '/'
+    let maplocalleader = '|'
+
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
+
+    " Break arrow key habit
+    noremap <Up> <NOP>
+    noremap <Down> <NOP>
+    noremap <Left> <NOP>
+    noremap <Right> <NOP>
+" }
+
+" Completor {
+    let g:completor_filesize_limit = 20480  " complete up to 20k in size
+    let g:completor_blacklist = [
+        \'tagbar', 'qf', 'netrw', 'unite', 'vimwiki',
+        \'gitcommit', 'hgcommit', 'nerdtree'] " types to avoid
+
+    " cycle thru with tab
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+    " cycle back without tab
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " select with enter
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 " }
