@@ -35,6 +35,7 @@ q = qseries -s -v
 qstat = qdiff --stat
 grepcwd = ! $HG grep -r 'reverse(::.)' "$1" .
 llog = log --template='\x1B[31m{rev}\x1B[0m:\x1B[33m{node|short} \x1B[97m{author|user}\x1B[0m \x1B[36m{date|age} \x1B[32m[{phase}] {if(branch,"\x1B[90m{branch} ")}{if(tags,"\x1B[93mtags:({tags}) ")}\x1B[0m{desc|firstline}\x1B[0m\n'
+blog = log --template='\x1B[31m{rev}\x1B[0m:\x1B[33m{node|short} \x1B[97m{author|user}\x1B[0m \x1B[36m{date|age} \x1B[32m[{phase}] {if(branch,"\x1B[90m{branch} ")}{if(tags,"\x1B[93mtags:({tags}) ")} \x1B[94m{bisect} \x1B[0m{desc|firstline}\x1B[0m\n'
 dlog = log --template='\x1B[31m{rev}\x1B[0m:\x1B[33m{node|short} \x1B[97m{author|user}\x1B[0m \x1B[36m{date|age} \x1B[32m[{phase}] {if(tags,"\x1B[93mtags:{tags} ")}\x1B[0m{desc|firstline}{if(file_mods,"\n  \x1B[93mmodified: {join(file_mods,", ")}")}{if(file_dels,"\n  \x1B[31mdeleted: {join(file_dels,",")}")}{if(file_adds,"\n  \x1B[32mnew: {join(file_adds,", ")}")} \x1B[0m \n'
 qreset = ! { $HG qtop >/dev/null || $HG qtop; } && echo "Unstaged changes in working directory after resetting $($HG qtop)" && $HG qdiff --stat && $HG qrefresh --exclude .
 qcref = ! $HG qreset && $HG qrefresh --interactive
