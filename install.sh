@@ -104,6 +104,10 @@ ln -svf  $ROOT/tmux.conf ~/.tmux.conf
 
 # VIM
 ln -svf  $ROOT/.vimrc ~/.vimrc
+if [ ! -e ~/.vim/ftplugin/c ]; then
+    mkdir -p ~/.vim/ftplugin/c
+fi
+ln -svf  $ROOT/.vim/ftplugin/c/dmotles.vim ~/.vim/ftplugin/c/dmotles.vim
 
 # GDB
 ln -svf  $ROOT/gdbinit ~/.gdbinit
