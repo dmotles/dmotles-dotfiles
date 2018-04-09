@@ -236,3 +236,7 @@ filetype plugin indent on    " required
     call InitializeDirectories()
     " }
 "
+augroup disablecpp
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup END
