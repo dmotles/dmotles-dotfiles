@@ -74,6 +74,11 @@ filetype plugin indent on    " required
 
     set autoread                        " read a file when it has been changed
     set path+=./**                      " add all files in cwd to path
+
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
+        set grepformat=%f:%l:%c:%m
+    endif
 " }
 
 
