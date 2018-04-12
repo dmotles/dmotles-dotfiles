@@ -79,6 +79,12 @@ filetype plugin indent on    " required
         set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
         set grepformat=%f:%l:%c:%m
     endif
+
+    " I don't CPP right now - I C
+    augroup disablecpp
+        autocmd!
+        autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+    augroup END
 " }
 
 
@@ -241,7 +247,3 @@ filetype plugin indent on    " required
     call InitializeDirectories()
     " }
 "
-augroup disablecpp
-    autocmd!
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-augroup END
