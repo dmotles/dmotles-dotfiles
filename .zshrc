@@ -76,4 +76,28 @@ function rmrej() {
     find . \( -name '*.orig' -o -name '*.rej' \) -print -delete
 }
 
+SSH_AGENT_ENV=~/.ssh/agent-env
+function -try-load-ssh-agent-env() {
+    if [ -f ${SSH_AGENT_ENV} ]; then
+        . ${SSH_AGENT_ENV}
+    fi
+}
+
+function -new-ssh-agent() {
+    ssh-agent -s > ${SSH_AGENT_ENV}
+    . ${SSH_AGENT_ENV}
+}
+
+function refresh-ssh-agent() {
+    # try load latest ssh-agent
+    -try-load-ssh-agent-env
+
+    # set ? check if exists
+    if [ -z "${SSH_AGENT_PID}" ] || ! kill -0 "${SSH_AGENT_PID}"; then
+        -new-ssh-agent
+    fi
+}
+
+refresh-ssh-agent
+
 echo "zshrc end"
