@@ -88,12 +88,15 @@ function -new-ssh-agent() {
     . ${SSH_AGENT_ENV}
 }
 
+function -ssh-agent-down() {
+    ! ssh-add -L &>/dev/null
+}
+
 function refresh-ssh-agent() {
     # try load latest ssh-agent
     -try-load-ssh-agent-env
 
-    # set ? check if exists
-    if [ -z "${SSH_AGENT_PID}" ] || ! kill -0 "${SSH_AGENT_PID}"; then
+    if -ssh-agent-down; then
         -new-ssh-agent
     fi
 }
