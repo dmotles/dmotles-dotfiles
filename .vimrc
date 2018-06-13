@@ -41,6 +41,9 @@ Plugin 'neomake/neomake'
 " Git/Hg +/- in the gutter
 Plugin 'mhinz/vim-signify'
 
+" Rust support
+Plugin 'rust-lang/rust.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
