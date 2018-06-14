@@ -88,15 +88,26 @@ function -new-ssh-agent() {
     . ${SSH_AGENT_ENV}
 }
 
-function -ssh-agent-down() {
-    ! ssh-add -L &>/dev/null
+function -ssh-agent-up() {
+    if [ -n "${SSH_AUTH_SOCK+1}" ]; then
+        ssh-add -L &>/dev/null
+        local ssh_add_exit_code=$?
+        local ssh_add_output=`ssh-add -L 2>&1`
+        if [[ $ssh_add_exit_code == 1 ]]; then
+            if [[ "$ssh_add_output" == 'The agent has no identities.' ]]; then
+                return 0
+            fi
+        fi
+        return $ssh_add_exit_code
+    fi
+    return 1
 }
 
 function refresh-ssh-agent() {
     # try load latest ssh-agent
     -try-load-ssh-agent-env
 
-    if -ssh-agent-down; then
+    if ! -ssh-agent-up; then
         -new-ssh-agent
     fi
 }
