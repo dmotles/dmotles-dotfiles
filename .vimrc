@@ -44,6 +44,10 @@ Plugin 'mhinz/vim-signify'
 " Rust support
 Plugin 'rust-lang/rust.vim'
 
+" Javascript and JSX support
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
