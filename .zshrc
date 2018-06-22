@@ -114,4 +114,8 @@ function refresh-ssh-agent() {
 
 refresh-ssh-agent
 
+if [ -f ~/.zshrc-work ]; then
+    . ~/.zshrc-work
+fi
+
 echo "zshrc end"
