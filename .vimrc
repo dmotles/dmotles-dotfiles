@@ -9,6 +9,9 @@
 
 set background=dark
 
+" Certain PYTHONPATHs can break the built-in vim python runtime.
+let $PYTHONPATH=''
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VUNDLE
 set nocompatible
 filetype off                  " required
