@@ -47,6 +47,9 @@ Plugin 'mhinz/vim-signify'
 " Rust support
 Plugin 'rust-lang/rust.vim'
 
+" rg (ripgrep) plugin for RG command
+Plugin 'jremmen/vim-ripgrep'
+
 " Javascript and JSX support
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -274,3 +277,7 @@ filetype plugin indent on    " required
     augroup END
     " }
 "}
+
+" vim-ripgrep {
+    nnoremap <silent> <Leader>* :Rg<CR>
+" }
