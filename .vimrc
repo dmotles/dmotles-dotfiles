@@ -54,6 +54,9 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
+" Better python syntax highlighting
+Plugin 'vim-python/python-syntax'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
