@@ -6,6 +6,7 @@ source ~/.dmotles-dotfiles-root
 source ~/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle thewtex/tmux-mem-cpu-load
 
 if [ -f ~/.antigen.theme ]; then
     antigen theme $(<~/.antigen.theme)

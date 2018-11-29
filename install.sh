@@ -71,9 +71,11 @@ case $OS in
         fi
         -brew-install-if-not-exist fortune fortune
         -brew-install-if-not-exist hg hg
+        -brew-install-if-not-exist cmake cmake
         ;;
     Linux)
         -apt-get-install-if-not-exist fortune fortune-mod
+        -apt-get-install-if-not-exist cmake cmake
         ;;
 esac
 
