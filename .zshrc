@@ -37,8 +37,8 @@ function dotfiles() {
     shift
 
     case "$subcmd" in
-        st|status|diff|add|commit|push|pull|show)
-            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT $subcmd $@
+        git)
+            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT $@
             ;;
         install)
             $DMOTLES_DOTFILES_ROOT/install.sh
@@ -60,13 +60,8 @@ dotfiles [subcmd] [args]
 
 Available subcommands:
 
-    status  get the git status
-    show    do git show
-    diff    get the git diff
-    add     add changes
-    commit  commit changes
-    push    push changes
-    pull    pull changes
+    git     do a git operation in the dotfiles dir.
+    install run the install script. Might be safe to do.
     update  pull, run install, source zshrc
 EOF
             ;;
