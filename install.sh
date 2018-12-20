@@ -36,6 +36,9 @@ function -safe-git-checkout() {
     local rev="$2"
     if [ -n "$rev" ]; then
         git --git-dir "$tgtdir/.git" --work-tree "$tgtdir" checkout "$rev"
+        git --git-dir "$tgtdir/.git" --work-tree "$tgtdir" pull origin "$rev"
+    else
+        git --git-dir "$tgtdir/.git" --work-tree "$tgtdir" pull origin master
     fi
 }
 
@@ -79,6 +82,11 @@ case $OS in
         ;;
 esac
 
+if ! command -v zsh; then
+    echo 'Install zsh first, bro.'
+    exit 1
+fi
+
 -safe-git-clone https://github.com/zsh-users/antigen.git ~/antigen 'v2.1.1' 
 
 # hg prompt, needed for some themes...
@@ -90,28 +98,7 @@ echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 
 -safe-git-clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# GIT
-ln -svf  $ROOT/.gitconfig ~/.gitconfig
-ln -svf  $ROOT/.gitignore_global ~/.gitignore_global
-
-# ZSH
-ln -svf  $ROOT/.zshrc ~/.zshrc
-
-# HG
-ln -svf  $ROOT/.hgrc ~/.hgrc
-ln -svf  $ROOT/.hgignore_global ~/.hgignore_global
-
-# TMUX
-ln -svf  $ROOT/tmux.conf ~/.tmux.conf
-
-# VIM
-ln -svf  $ROOT/.vimrc ~/.vimrc
-mkdir -p ~/.vim/ftplugin/c
-ln -svf  $ROOT/.vim/ftplugin/c/dmotles.vim ~/.vim/ftplugin/c/dmotles.vim
-mkdir -p ~/.vim/ftplugin/python
-ln -svf  $ROOT/.vim/ftplugin/python/dmotles.vim ~/.vim/ftplugin/python/dmotles.vim
-
-# GDB
-ln -svf  $ROOT/gdbinit ~/.gdbinit
+# does the symlink magic
+python symlink_all.py
 
 vim +PluginInstall! +PluginClean +qa
