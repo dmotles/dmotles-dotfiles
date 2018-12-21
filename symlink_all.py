@@ -63,13 +63,29 @@ def link(src, tgt):
 
 
 def move_to_backup(_path):
-    assert False, 'add code here to fix problem'
-    dirname, basename = os.path.split(_path)
-    tmpfile, tmpfilepath = tempfile.mkstemp(dir=dirname, prefix=basename)
-    tmpfile.close()
-    LOG.info('Backing up %s -> %s', _path, tmpfilepath)
-    os.renames(_path, tmpfilepath)
+    opt = 'XXXXX'
+    while opt.lower()[0] not in 'krd':
+        print('[K]eep, [R]ename, or [D]elete {}?'.format(_path))
+        opt = raw_input()
+        if not opt:
+            opt = 'XXXX'
 
+    opt = opt.lower()[0]
+    if opt == 'k':
+        return False
+    if opt == 'r':
+        yes = 'no'
+        new_path = _path
+        while not yes.lower().startswith('y'):
+            print('Renane/move to what path?')
+            new_path = raw_input()
+            new_path = os.path.normalize(os.path.expanduser(new_path))
+            print('Move {} to {} [y/n]?'.format(_path, new_path))
+            yes = raw_input()
+        os.rename(_path, new_path)
+    if opt == 'd':
+        os.unlink(_path)
+    return True
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
