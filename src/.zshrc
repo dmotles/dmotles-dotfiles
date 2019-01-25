@@ -1,6 +1,6 @@
 echo "zshrc start"
 
-export PATH="~/bin:$PATH"
+export PATH="${HOME}/bin:$PATH"
 
 source ~/.dmotles-dotfiles-root
 source ~/antigen/antigen.zsh
