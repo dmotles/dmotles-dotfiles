@@ -57,6 +57,9 @@ Plugin 'mxw/vim-jsx'
 " Better python syntax highlighting
 Plugin 'vim-python/python-syntax'
 
+" Better python indentation
+Plugin 'vim-scripts/indentpython.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
