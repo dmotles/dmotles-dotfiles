@@ -182,7 +182,7 @@ filetype plugin indent on    " required
         call cursor(l, c)
     endfunction
     " }
-    autocmd FileType c,python,vim
+    autocmd FileType c,python,vim,yaml,javascript,jsx,javascript.jsx
         \ autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
     set nowrap                      " Do not wrap long lines
