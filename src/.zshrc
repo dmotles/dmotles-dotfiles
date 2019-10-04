@@ -114,4 +114,6 @@ if [ -f ~/.zshrc-work ]; then
     . ~/.zshrc-work
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 echo "zshrc end"

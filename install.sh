@@ -75,10 +75,14 @@ case $OS in
         -brew-install-if-not-exist fortune fortune
         -brew-install-if-not-exist hg hg
         -brew-install-if-not-exist cmake cmake
+        -brew-install-if-not-exist fzf
+        brew install fzf
+        $(brew --prefix)/opt/fzf/install
         ;;
     Linux)
         -apt-get-install-if-not-exist fortune fortune-mod
         -apt-get-install-if-not-exist cmake cmake
+        -safe-git-clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
         ;;
 esac
 
