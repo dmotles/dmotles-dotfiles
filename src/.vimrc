@@ -63,6 +63,9 @@ Plugin 'vim-scripts/indentpython.vim'
 " Tagbar - for tags
 Plugin 'majutsushi/tagbar'
 
+" ctrlp - fuzzy finder
+Plugin 'ctrlpvim/ctrlp.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -232,6 +235,14 @@ filetype plugin indent on    " required
 
 " Signify {
     let g:signify_vcs_list = [ 'git', 'hg' ] " only git and hg
+" }
+
+" ctrl-p {
+    if executable('rg')
+        let g:ctrlp_user_command = 'rg --files %s'
+    elseif executable('ag')
+        let g:ctrlp_user_command = 'ag -g %s'
+    endif
 " }
 
 " Functions {
