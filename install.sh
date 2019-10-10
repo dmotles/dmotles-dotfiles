@@ -75,7 +75,7 @@ case $OS in
         -brew-install-if-not-exist fortune fortune
         -brew-install-if-not-exist hg hg
         -brew-install-if-not-exist cmake cmake
-        -brew-install-if-not-exist fzf
+        -brew-install-if-not-exist fzf fzf
         brew install fzf
         $(brew --prefix)/opt/fzf/install
         ;;
