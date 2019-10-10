@@ -1,5 +1,10 @@
 echo "zshrc start"
 
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit
+bashcompinit -i
+
+[ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
 export PATH="${HOME}/bin:$PATH"
 
 source ~/.dmotles-dotfiles-root
