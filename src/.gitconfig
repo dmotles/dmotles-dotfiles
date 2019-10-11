@@ -25,3 +25,6 @@
 	st = status -s
 	co = checkout
 	br = branch
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
