@@ -69,6 +69,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " Terraform HCL support
 Plugin 'hashivim/vim-terraform'
 
+" Ansible support
+Plugin 'pearofducks/ansible-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -246,6 +249,13 @@ filetype plugin indent on    " required
     elseif executable('ag')
         let g:ctrlp_user_command = 'ag -g %s'
     endif
+" }
+
+" ansible-vim {
+    augroup ansible_vim_ft_detection
+        au!
+        au BufNewFile,BufRead */playbook/*.yml set ft=yaml.ansible
+    augroup END
 " }
 
 " Functions {
