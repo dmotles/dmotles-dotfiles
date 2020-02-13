@@ -256,6 +256,9 @@ filetype plugin indent on    " required
         au!
         au BufNewFile,BufRead */playbook/*.yml set ft=yaml.ansible
     augroup END
+    let g:ansible_name_highlight = 'b'
+    let g:ansible_extra_keywords_highlight = 1
+    let g:ansible_template_syntaxes = {'*.bash.j2': 'sh'}
 " }
 
 " Functions {
