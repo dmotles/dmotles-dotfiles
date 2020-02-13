@@ -66,6 +66,9 @@ Plugin 'majutsushi/tagbar'
 " ctrlp - fuzzy finder
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Terraform HCL support
+Plugin 'hashivim/vim-terraform'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
