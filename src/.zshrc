@@ -5,7 +5,8 @@ autoload -Uz bashcompinit
 bashcompinit -i
 
 [ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
-export PATH="${HOME}/bin:$PATH"
+typeset -U path
+path+=("$HOME/bin")
 
 source ~/.dmotles-dotfiles-root
 source ~/antigen/antigen.zsh
@@ -120,5 +121,7 @@ if [ -f ~/.zshrc-work ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH
 
 echo "zshrc end"
