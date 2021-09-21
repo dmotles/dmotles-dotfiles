@@ -1,5 +1,9 @@
 echo "zshrc start"
 
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 autoload -Uz compinit && compinit
 autoload -Uz bashcompinit
 bashcompinit -i
