@@ -48,7 +48,8 @@ Plugin 'mhinz/vim-signify'
 Plugin 'rust-lang/rust.vim'
 
 " rg (ripgrep) plugin for RG command
-Plugin 'jremmen/vim-ripgrep'
+" Plugin 'jremmen/vim-ripgrep'
+Plugin 'lamchau/vim-ripgrep' " patch-1 branch because original maintainer flaked
 
 " Javascript and JSX support
 Plugin 'pangloss/vim-javascript'
