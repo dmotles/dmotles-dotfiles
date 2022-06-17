@@ -93,11 +93,6 @@ fi
 
 -safe-git-clone https://github.com/zsh-users/antigen.git ~/antigen 'v2.1.1' 
 
-# hg prompt, needed for some themes...
-if [ ! -d ~/.hg-prompt ]; then
-    hg clone https://bitbucket.org/sjl/hg-prompt ~/.hg-prompt
-fi
-
 echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 
 -safe-git-clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
