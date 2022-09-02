@@ -98,6 +98,6 @@ echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 -safe-git-clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # does the symlink magic
-python symlink_all.py
+python3 symlink_all.py
 
 vim +PluginInstall! +PluginClean +qa

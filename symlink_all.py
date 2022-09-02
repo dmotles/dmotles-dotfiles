@@ -17,7 +17,7 @@ def link_files():
         home_subdir = os.path.join(homedir, pkg_subdir)
         if not os.path.isdir(home_subdir):
             LOG.error('No such dir: %s', home_subdir)
-            if raw_input('Create {} [y/n]?'
+            if input('Create {} [y/n]?'
                          ''.format(home_subdir)).lower().startswith('y'):
                 os.makedirs(home_subdir)
         if os.path.isdir(home_subdir):
@@ -66,7 +66,7 @@ def move_to_backup(_path):
     opt = 'XXXXX'
     while opt.lower()[0] not in 'krd':
         print('[K]eep, [R]ename, or [D]elete {}?'.format(_path))
-        opt = raw_input()
+        opt = input()
         if not opt:
             opt = 'XXXX'
 
@@ -78,10 +78,10 @@ def move_to_backup(_path):
         new_path = _path
         while not yes.lower().startswith('y'):
             print('Renane/move to what path?')
-            new_path = raw_input()
+            new_path = input()
             new_path = os.path.normalize(os.path.expanduser(new_path))
             print('Move {} to {} [y/n]?'.format(_path, new_path))
-            yes = raw_input()
+            yes = input()
         os.rename(_path, new_path)
     if opt == 'd':
         os.unlink(_path)
