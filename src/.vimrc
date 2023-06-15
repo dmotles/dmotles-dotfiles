@@ -318,3 +318,7 @@ filetype plugin indent on    " required
 " vim-ripgrep {
     nnoremap <silent> <Leader>* :Rg<CR>
 " }
+
+
+set exrc
+set secure
