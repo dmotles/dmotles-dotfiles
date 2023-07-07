@@ -1,5 +1,20 @@
 echo "zshrc start"
 
+case $(uname -s) in
+    Darwin)
+        export HOMEBREW_PREFIX="/opt/homebrew";
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+        export HOMEBREW_REPOSITORY="/opt/homebrew";
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+        export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+        export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+        ;;
+    Linux)
+        alias ls='/bin/ls --color=auto'
+        alias tmux='/usr/bin/tmux -2'
+        ;;
+esac
+
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
@@ -31,16 +46,6 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
-case $(uname -s) in
-    Darwin)
-        ;;
-    Linux)
-        alias ls='/bin/ls --color=auto'
-        alias tmux='/usr/bin/tmux -2'
-        ;;
-esac
-
 
 function dotfiles() {
     local subcmd=$1
@@ -128,8 +133,8 @@ fi
 
 export PATH
 
-echo "zshrc end"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+echo "zshrc end"
