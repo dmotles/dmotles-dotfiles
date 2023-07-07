@@ -79,7 +79,7 @@ def move_to_backup(_path):
         while not yes.lower().startswith('y'):
             print('Renane/move to what path?')
             new_path = input()
-            new_path = os.path.normalize(os.path.expanduser(new_path))
+            new_path = os.path.normpath(os.path.expanduser(new_path))
             print('Move {} to {} [y/n]?'.format(_path, new_path))
             yes = input()
         os.rename(_path, new_path)
