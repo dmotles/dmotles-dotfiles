@@ -29,6 +29,7 @@ bashcompinit -i
 [ -f /opt/homebrew/etc/bash_completion.d/az ] && source /opt/homebrew/etc/bash_completion.d/az
 typeset -U path
 path+=("$HOME/bin")
+path+=("$HOME/.local/bin")
 
 source ~/.dmotles-dotfiles-root
 source ~/antigen/antigen.zsh
