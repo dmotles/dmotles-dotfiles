@@ -31,6 +31,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 " autocomplete
 Plugin 'maralla/completor.vim'
+Plugin 'maralla/completor-typescript'
 
 " mercurial in-editor diff
 Plugin 'ludovicchabant/vim-lawrencium'
@@ -53,6 +54,10 @@ Plugin 'jremmen/vim-ripgrep'
 " Javascript and JSX support
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'heavenshell/vim-jsdoc'
+
+" Typescript
+Plugin 'leafgarland/typescript-vim'
 
 " Better python syntax highlighting
 Plugin 'vim-python/python-syntax'
