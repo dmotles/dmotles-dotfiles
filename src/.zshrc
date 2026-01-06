@@ -23,6 +23,8 @@ autoload -Uz compinit && compinit
 autoload -Uz bashcompinit
 bashcompinit -i
 
+[ -f /opt/homebrew/bin/terraform ] && complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
 [ -f /usr/local/bin/aws_zsh_completer.sh ] && source /usr/local/bin/aws_zsh_completer.sh
 typeset -U path
 path+=("$HOME/bin")
