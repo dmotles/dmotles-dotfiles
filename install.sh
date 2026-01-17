@@ -8,6 +8,13 @@ cd $ROOT
 
 OS=$(uname -s)
 
+# Detect non-interactive mode for Coder, Codespaces, or manual override
+NONINTERACTIVE=false
+if [ "${CODER:-}" = "true" ] || [ "${CODESPACES:-}" = "true" ] || [ "${DOTFILES_NONINTERACTIVE:-}" = "1" ]; then
+    NONINTERACTIVE=true
+    echo "Running in non-interactive mode"
+fi
+
 
 function -pkg-mgr-install-if-not-exists() {
     local testcmd="$1"
@@ -27,7 +34,7 @@ function -brew-install-if-not-exist() {
 
 
 function -apt-get-install-if-not-exist() {
-    -pkg-mgr-install-if-not-exists "$1" "$2" "sudo apt-get"
+    -pkg-mgr-install-if-not-exists "$1" "$2" "sudo apt-get -y"
 }
 
 
@@ -77,18 +84,24 @@ case $OS in
         -brew-install-if-not-exist cmake cmake
         -brew-install-if-not-exist fzf fzf
         brew install fzf
-        $(brew --prefix)/opt/fzf/install
+        $(brew --prefix)/opt/fzf/install --all --no-update-rc
         ;;
     Linux)
-        -apt-get-install-if-not-exist fortune fortune-mod
+        sudo apt-get update
+        -apt-get-install-if-not-exist fortune fortune-mod || true
         -apt-get-install-if-not-exist cmake cmake
-        -safe-git-clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+        -safe-git-clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-update-rc
         ;;
 esac
 
 if ! command -v zsh; then
-    echo 'Install zsh first, bro.'
-    exit 1
+    if [ "$NONINTERACTIVE" = true ]; then
+        echo "zsh not found, installing..."
+        sudo apt-get -y install zsh
+    else
+        echo 'Install zsh first, bro.'
+        exit 1
+    fi
 fi
 
 -safe-git-clone https://github.com/zsh-users/antigen.git ~/antigen 'v2.1.1' 
@@ -98,6 +111,10 @@ echo "export DMOTLES_DOTFILES_ROOT=$ROOT" > ~/.dmotles-dotfiles-root
 -safe-git-clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # does the symlink magic
-python3 symlink_all.py
+if [ "$NONINTERACTIVE" = true ]; then
+    python3 symlink_all.py --non-interactive
+else
+    python3 symlink_all.py
+fi
 
 vim +PluginInstall! +PluginClean +qa

@@ -31,3 +31,5 @@ Applications/
 .android/
 .filezilla/
 .pearrc
+__pycache__
+.claude/settings.local.json

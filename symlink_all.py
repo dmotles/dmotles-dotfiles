@@ -5,19 +5,56 @@ Installs dotfiles located in src/
 from __future__ import print_function, absolute_import
 import os
 import logging
-import tempfile
 import errno
+import argparse
+import shutil
 
 LOG = logging.getLogger(__name__)
 
-def link_files():
+BACKUP_DIR = os.path.expanduser('~/.dotfiles-backup')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Symlink dotfiles to home directory')
+    parser.add_argument('--non-interactive', '-y', action='store_true',
+                        help='Run without prompts (auto-yes to all)')
+    return parser.parse_args()
+
+
+def is_noninteractive(args):
+    """Check if we should run in non-interactive mode."""
+    if args.non_interactive:
+        return True
+    return (os.environ.get('CODER') == 'true' or
+            os.environ.get('CODESPACES') == 'true' or
+            os.environ.get('DOTFILES_NONINTERACTIVE') == '1')
+
+
+def backup_file(path):
+    """Move file to ~/.dotfiles-backup/ preserving relative path from home."""
+    if not os.path.exists(BACKUP_DIR):
+        os.makedirs(BACKUP_DIR)
+    home = os.path.expanduser('~')
+    rel_path = os.path.relpath(path, home)
+    backup_path = os.path.join(BACKUP_DIR, rel_path)
+    backup_parent = os.path.dirname(backup_path)
+    if not os.path.exists(backup_parent):
+        os.makedirs(backup_parent)
+    shutil.move(path, backup_path)
+    LOG.info('Backed up %s to %s', path, backup_path)
+
+
+def link_files(noninteractive=False):
     homedir = os.path.expanduser('~')
     for root, _, files in os.walk('src'):
         pkg_subdir = os.path.relpath(root, 'src')
         home_subdir = os.path.join(homedir, pkg_subdir)
         if not os.path.isdir(home_subdir):
             LOG.error('No such dir: %s', home_subdir)
-            if input('Create {} [y/n]?'
+            if noninteractive:
+                LOG.info('Creating directory %s', home_subdir)
+                os.makedirs(home_subdir)
+            elif input('Create {} [y/n]?'
                          ''.format(home_subdir)).lower().startswith('y'):
                 os.makedirs(home_subdir)
         if os.path.isdir(home_subdir):
@@ -26,7 +63,7 @@ def link_files():
                     os.path.join(home_subdir, file_))
                 file_src_path = os.path.normpath(os.path.join(root, file_))
                 LOG.info('Linking %s -> %s', file_src_path, file_tgt_path)
-                link(file_src_path, file_tgt_path)
+                link(file_src_path, file_tgt_path, noninteractive)
 
 
 def is_same_file(orig_file, symlink):
@@ -40,7 +77,7 @@ def is_same_file(orig_file, symlink):
     return False
 
 
-def link(src, tgt):
+def link(src, tgt, noninteractive=False):
     src_real = os.path.abspath(src)
     if os.path.islink(tgt):
         try:
@@ -48,7 +85,7 @@ def link(src, tgt):
                 return
             else:
                 LOG.warn('Attempting to backup..')
-                move_to_backup(tgt)
+                move_to_backup(tgt, noninteractive)
         except OSError as oserr:
             if oserr.errno == errno.ENOENT:
                 LOG.warn('It appears %s did not point at anything legit', tgt)
@@ -58,11 +95,21 @@ def link(src, tgt):
     elif os.path.isfile(tgt) or os.path.isdir(tgt):
         LOG.warn('%s already exists... attempting to move out of the way...',
                  tgt)
-        move_to_backup(tgt)
+        move_to_backup(tgt, noninteractive)
     os.symlink(src_real, tgt)
 
 
-def move_to_backup(_path):
+def move_to_backup(_path, noninteractive=False):
+    if noninteractive:
+        # In non-interactive mode, backup the file
+        if os.path.islink(_path):
+            # Broken symlink - just delete it
+            LOG.info('Removing broken symlink %s', _path)
+            os.unlink(_path)
+        else:
+            backup_file(_path)
+        return True
+
     opt = 'XXXXX'
     while opt.lower()[0] not in 'krd':
         print('[K]eep, [R]ename, or [D]elete {}?'.format(_path))
@@ -89,7 +136,11 @@ def move_to_backup(_path):
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
-    link_files()
+    args = parse_args()
+    noninteractive = is_noninteractive(args)
+    if noninteractive:
+        LOG.info('Running in non-interactive mode')
+    link_files(noninteractive)
 
 if __name__ == '__main__':
     main()
