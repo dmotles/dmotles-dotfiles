@@ -117,4 +117,5 @@ else
     python3 symlink_all.py
 fi
 
-vim +PluginInstall! +PluginClean +qa
+# Install vim plugins (nomore prevents "Press ENTER" prompts, qa! forces quit)
+vim -c 'set nomore' -c 'PluginInstall!' -c 'PluginClean' -c 'qa!'
