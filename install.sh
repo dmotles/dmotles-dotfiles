@@ -90,6 +90,7 @@ case $OS in
         sudo apt-get update
         -apt-get-install-if-not-exist fortune fortune-mod || true
         -apt-get-install-if-not-exist cmake cmake
+        -apt-get-install-if-not-exist g++ g++
         -safe-git-clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all --no-update-rc
         ;;
 esac
