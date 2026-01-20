@@ -118,6 +118,11 @@ else
     python3 symlink_all.py
 fi
 
-# Install vim plugins
-# Use yes to auto-answer any "Press ENTER" prompts from errors
-yes '' | vim -c 'set nomore' -c 'PluginInstall!' -c 'PluginClean' -c 'qa!' || true
+# Install vim plugins (skip in Coder - it's slow and often not needed)
+if [ "${CODER:-}" = "true" ]; then
+    echo "Vim has not been set up. If using vim, run the following to do first time setup:"
+    echo "  vim -c 'PluginInstall!' -c 'PluginClean' -c 'qa!'"
+else
+    # Use yes to auto-answer any "Press ENTER" prompts from errors
+    yes '' | vim -c 'set nomore' -c 'PluginInstall!' -c 'PluginClean' -c 'qa!' || true
+fi
