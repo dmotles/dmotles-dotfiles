@@ -15,6 +15,8 @@ if [ "${CODER:-}" = "true" ] || [ "${CODESPACES:-}" = "true" ] || [ "${DOTFILES_
     echo "Running in non-interactive mode"
 fi
 
+# Timeout in seconds for apt to wait for dpkg lock
+APT_LOCK_TIMEOUT=120
 
 function -pkg-mgr-install-if-not-exists() {
     local testcmd="$1"
@@ -34,7 +36,7 @@ function -brew-install-if-not-exist() {
 
 
 function -apt-get-install-if-not-exist() {
-    -pkg-mgr-install-if-not-exists "$1" "$2" "sudo apt-get -y"
+    -pkg-mgr-install-if-not-exists "$1" "$2" "sudo apt-get -o DPkg::Lock::Timeout=$APT_LOCK_TIMEOUT -y"
 }
 
 
@@ -87,7 +89,7 @@ case $OS in
         $(brew --prefix)/opt/fzf/install --all --no-update-rc
         ;;
     Linux)
-        sudo apt-get update
+        sudo apt-get -o DPkg::Lock::Timeout=$APT_LOCK_TIMEOUT update
         -apt-get-install-if-not-exist fortune fortune-mod || true
         -apt-get-install-if-not-exist cmake cmake
         -apt-get-install-if-not-exist g++ g++
@@ -98,7 +100,7 @@ esac
 if ! command -v zsh; then
     if [ "$NONINTERACTIVE" = true ]; then
         echo "zsh not found, installing..."
-        sudo apt-get -y install zsh
+        sudo apt-get -o DPkg::Lock::Timeout=$APT_LOCK_TIMEOUT -y install zsh
     else
         echo 'Install zsh first, bro.'
         exit 1
