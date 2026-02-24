@@ -142,3 +142,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 echo "zshrc end"
+
+# --- Gas Town Integration (managed by gt) ---
+[[ -f "/home/dmotles/.config/gastown/shell-hook.sh" ]] && source "/home/dmotles/.config/gastown/shell-hook.sh"
+# --- End Gas Town ---
