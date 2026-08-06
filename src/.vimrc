@@ -16,7 +16,8 @@ set background=dark
 set nocompatible
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+" Keep Vim usable while a new workspace installs plugins asynchronously.
+if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -79,6 +80,7 @@ Plugin 'pearofducks/ansible-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+endif
 filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" VUNDLE
 
@@ -130,7 +132,7 @@ filetype plugin indent on    " required
         let g:solarized_termtrans=1
         let g:solarized_contrast="normal"
         let g:solarized_visibility="normal"
-        colorscheme solarized
+        silent! colorscheme solarized
     " }
 
     set tabpagemax=15               " Only show 15 tabs

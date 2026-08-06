@@ -1,5 +1,3 @@
-echo "zshrc start"
-
 case $(uname -s) in
     Darwin)
         export HOMEBREW_PREFIX="/opt/homebrew";
@@ -11,7 +9,7 @@ case $(uname -s) in
         ;;
     Linux)
         alias ls='/bin/ls --color=auto'
-        alias tmux='/usr/bin/tmux -2'
+        command -v tmux >/dev/null 2>&1 && alias tmux='tmux -2'
         ;;
 esac
 
@@ -31,19 +29,20 @@ typeset -U path
 path+=("$HOME/bin")
 path+=("$HOME/.local/bin")
 
-source ~/.dmotles-dotfiles-root
-source ~/antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle thewtex/tmux-mem-cpu-load
+[ -f "$HOME/.dmotles-dotfiles-root" ] && source "$HOME/.dmotles-dotfiles-root"
+if [ -f "$HOME/antigen/antigen.zsh" ]; then
+    source "$HOME/antigen/antigen.zsh"
+    antigen use oh-my-zsh
+    antigen bundle zsh-users/zsh-syntax-highlighting
 
-if [ -f ~/.antigen.theme ]; then
-    antigen theme $(<~/.antigen.theme)
-else
-    antigen theme bureau
+    if [ -f "$HOME/.antigen.theme" ]; then
+        antigen theme "$(<"$HOME/.antigen.theme")"
+    else
+        antigen theme bureau
+    fi
+
+    antigen apply
 fi
-
-antigen apply
 
 setopt histignorealldups sharehistory
 bindkey -e
@@ -57,21 +56,21 @@ function dotfiles() {
 
     case "$subcmd" in
         git)
-            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT $@
+            git --git-dir="$DMOTLES_DOTFILES_ROOT/.git" --work-tree="$DMOTLES_DOTFILES_ROOT" "$@"
             ;;
         install)
-            $DMOTLES_DOTFILES_ROOT/install.sh
-            if which antigen &>/dev/null; then
+            "$DMOTLES_DOTFILES_ROOT/install.sh"
+            if command -v antigen &>/dev/null; then
                 antigen reset
             fi
             ;;
         update)
-            git --git-dir=$DMOTLES_DOTFILES_ROOT/.git --work-tree=$DMOTLES_DOTFILES_ROOT pull \
-                && $DMOTLES_DOTFILES_ROOT/install.sh \
-                && source ~/.zshrc
-                if which antigen &>/dev/null; then
-                    antigen reset
-                fi
+            git --git-dir="$DMOTLES_DOTFILES_ROOT/.git" --work-tree="$DMOTLES_DOTFILES_ROOT" pull \
+                && "$DMOTLES_DOTFILES_ROOT/install.sh" \
+                && source "$HOME/.zshrc"
+            if command -v antigen &>/dev/null; then
+                antigen reset
+            fi
             ;;
         *)
             cat <<EOF
@@ -99,6 +98,8 @@ function -try-load-ssh-agent-env() {
 }
 
 function -new-ssh-agent() {
+    mkdir -p "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
     ssh-agent -s > ${SSH_AGENT_ENV}
     . ${SSH_AGENT_ENV}
 }
@@ -133,16 +134,17 @@ if [ -f ~/.zshrc-work ]; then
     . ~/.zshrc-work
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f "$HOME/.fzf.zsh" ]; then
+    source "$HOME/.fzf.zsh"
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
 export PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-echo "zshrc end"
-
 # --- Gas Town Integration (managed by gt) ---
 [[ -f "/home/dmotles/.config/gastown/shell-hook.sh" ]] && source "/home/dmotles/.config/gastown/shell-hook.sh"
 # --- End Gas Town ---

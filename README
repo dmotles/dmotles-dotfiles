@@ -1,1 +1,17 @@
-Run install.sh from the directory where you cloned this repo. Should install OK.
+Run `./install.sh` from the cloned repository.
+
+The installer links configuration into the current home directory, then
+reconciles user-owned tools such as Antigen, Vundle, and Vim plugins. It never
+uses sudo or a system package manager. In Coder, the home directory and the
+bootstrap completion marker persist across VM replacements, so expensive work
+runs only when the bootstrap inputs change.
+
+Useful commands:
+
+    ./install.sh --links-only       # configuration only, no network work
+    ./install.sh                    # links plus bootstrap when needed
+    ./install.sh --force-bootstrap  # force plugin reconciliation
+
+Bootstrap state and logs are stored beneath
+`~/.local/state/dmotles-dotfiles/`. Coder system dependencies are baked into
+the devbox image maintained by the ai-workflow repository.

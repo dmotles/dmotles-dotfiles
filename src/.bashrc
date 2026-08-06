@@ -1,7 +1,7 @@
 # ~/.bashrc - managed by dmotles-dotfiles
 
 # Source dotfiles root if available
-[ -f ~/.dmotles-dotfiles-root ] && source ~/.dmotles-dotfiles-root
+[ -f "$HOME/.dmotles-dotfiles-root" ] && source "$HOME/.dmotles-dotfiles-root"
 
 # Source all files in .bashrc.d
 if [ -d ~/.bashrc.d ]; then
@@ -12,4 +12,8 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 # fzf keybindings if available
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f "$HOME/.fzf.bash" ]; then
+    source "$HOME/.fzf.bash"
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.bash ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
